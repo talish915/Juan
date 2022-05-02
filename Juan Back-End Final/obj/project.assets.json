@@ -8480,11 +8480,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Juan Back-End Final\\Juan Back-End Final.csproj",
+      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Juan Final\\Juan Back-End Final\\Juan Back-End Final.csproj",
       "projectName": "Juan Back-End Final",
-      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Juan Back-End Final\\Juan Back-End Final.csproj",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Juan Final\\Juan Back-End Final\\Juan Back-End Final.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Juan Back-End Final\\obj\\",
+      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Juan Final\\Juan Back-End Final\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
