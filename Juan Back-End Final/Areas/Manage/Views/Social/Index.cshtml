@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<Social>
 @{ int count = (ViewBag.PageIndex - 1) * 5; }
 
 
 <div class="row">
     <div class="col-lg-12 tagTable">
         <div class="d-sm-flex justify-content-between mb-4 align-items-center">
-            <h1 class="h3 mb-0 text-gray-800">Category</h1>
+            <h1 class="h3 mb-0 text-gray-800">Social</h1>
             <form>
                 <div class="row">
                     <div class="col">
@@ -36,35 +36,36 @@
                 </div>
             
             </form>
-            <a class="btn btn-success py-2 px-5" asp-action="Create">Create</a>
+            <a class="btn btn-success py-2 px-5" asp-action="Create">Add</a>
         </div>
         <table class="table table-striped text-center">
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Icon</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Product Count</th>
                     <th scope="col">Status</th>
                     <th scope="col">Setting</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Category category in Model)
+                @foreach (Social social in Model)
                 {
                     count++;
                     <tr>
                         <th scope="row">@count</th>
-                        <td>@category.Name</td>
-                        <td>@category.Products.Count()</td>
-                        <td style="color:@(category.IsDeleted ? "red":"green")">@(category.IsDeleted ? "DeActive":"Active")</td>
+                        <td><i class="@social.Icon"></i></td>
+                        <td><a href="@social.Link">@social.Name</a></td>
+                        <td style="color:@(social.IsDeleted ? "red":"green")">@(social.IsDeleted ? "DeActive":"Active")</td>
                         <td>
-                            <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@category.Id">Update</a>
-                            <a id="@(category.IsDeleted ? "restoreCategory":"deleteCategory")" class="btn w-25 @(category.IsDeleted ? "btn-primary":"btn-danger")" data-page="@ViewBag.PageIndex" asp-action="@(category.IsDeleted ? "Restore":"Delete")" asp-route-id="@category.Id">@(category.IsDeleted ? "Restore":"Delete")</a>
+                            <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@social.Id">Update</a>
+                            <a id="@(social.IsDeleted ? "restoreCategory":"deleteCategory")" class="btn w-25 @(social.IsDeleted ? "btn-primary":"btn-danger")" data-page="@ViewBag.PageIndex" asp-action="@(social.IsDeleted ? "Restore":"Delete")" asp-route-id="@social.Id">@(social.IsDeleted ? "Restore":"Delete")</a>
                         </td>
                     </tr>
                  }
             </tbody>
         </table>
+
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
         <nav aria-label="Page navigation example">
@@ -123,4 +124,5 @@
 
 @section Style{
     <link href="~/manage/css/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 }

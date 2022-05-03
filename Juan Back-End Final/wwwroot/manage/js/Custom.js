@@ -12,6 +12,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 let url = $(this).attr("href");
+                let page = $(this).data("page")
                 fetch(url).then(response =>
                 {
                     if (response.ok) {
@@ -19,13 +20,12 @@
                             'Deleted!',
                             'Your file has been deleted.',
                             'success'
-                        )
+                        ).then(a => {
+                            window.location = window.location.origin + "/manage/category?page=" + page
+                        })
                     }
 
-                    return response.text();
-                }).then(data =>
-                {
-                    $(".tagTable").html(data);
+                    
                 })
             }
         })

@@ -310,3 +310,6 @@ C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\R
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Index.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Create.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Update.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Social\Index.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Social\Create.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Social\Update.cshtml.g.cs

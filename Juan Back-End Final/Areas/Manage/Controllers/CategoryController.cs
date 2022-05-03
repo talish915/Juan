@@ -151,8 +151,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-
-            return RedirectToAction("Index");
+            return Ok();
         }
 
         public async Task<IActionResult> Restore(int? id)
