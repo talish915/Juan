@@ -23,6 +23,5 @@ namespace Juan_Back_End_Final.Models
 
         [NotMapped]
         public IFormFile LogoImage { get; set; }
-        public IEnumerable<Social> Social { get; set; }
     }
 }

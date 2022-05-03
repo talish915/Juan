@@ -16,5 +16,7 @@ namespace Juan_Back_End_Final.DAL
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Social> Socials { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Color> Colors { get; set; }
     }
 }

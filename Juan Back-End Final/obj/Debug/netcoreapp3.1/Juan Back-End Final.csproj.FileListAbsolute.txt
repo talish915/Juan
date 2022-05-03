@@ -304,3 +304,9 @@ C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\R
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Index.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Create.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Update.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Size\Index.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Size\Create.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Size\Update.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Index.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Create.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Color\Update.cshtml.g.cs

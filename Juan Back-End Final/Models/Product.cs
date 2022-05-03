@@ -25,6 +25,8 @@ namespace Juan_Back_End_Final.Models
         public Category Category { get; set; }
 
         public IEnumerable<Review> Reviews { get; set; }
-        public IEnumerable<ProductImage> productImages { get; set; }
+        public IEnumerable<ProductImage> ProductImages { get; set; }
+        public IEnumerable<ProductSize> ProductSizes { get; set; }
+        public IEnumerable<ProductColor> ProductColors { get; set; }
     }
 }

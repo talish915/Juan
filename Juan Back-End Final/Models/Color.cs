@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Juan_Back_End_Final.Models
 {
-    public class Social : BaseEntity
+    public class Color : BaseEntity
     {
-        [StringLength(255), Required]
-        public string Icon { get; set; }
-        [StringLength(255), Required]
+        [StringLength(255)]
         public string Name { get; set; }
-        [StringLength(255), Required]
-        public string Link { get; set; }
+
+        public IEnumerable<ProductColor> ProductColors { get; set; }
     }
 }

@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
 {
     [Area("manage")]
-    public class CategoryController : Controller
+    public class ColorController : Controller
     {
         private readonly JuanDbContext _context;
         private readonly IWebHostEnvironment _env;
 
 
-        public CategoryController(JuanDbContext context, IWebHostEnvironment env)
+        public ColorController(JuanDbContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;
@@ -28,57 +28,56 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
         {
             ViewBag.Status = status;
 
-            IEnumerable<Category> categories = await _context.Categories
-                .Include(c => c.Products)
+            IEnumerable<Color> colors = await _context.Colors
+                .Include(c => c.ProductColors)
                 .Where(c => status != null ? c.IsDeleted == status : true)
-                .OrderByDescending(c => c.CreatedAt)
+                .OrderByDescending(s => s.CreatedAt)
                 .ToListAsync();
 
             ViewBag.PageIndex = page;
-            ViewBag.PageCount = Math.Ceiling((double)categories.Count() / 5);
+            ViewBag.PageCount = Math.Ceiling((double)colors.Count() / 5);
 
-            return View(categories.Skip((page - 1) * 5).Take(5));
+            return View(colors.Skip((page - 1) * 5).Take(5));
         }
-
         public async Task<IActionResult> Create()
         {
-            ViewBag.MainCategory = await _context.Categories.Where(c => !c.IsDeleted).ToListAsync();
+            ViewBag.Color = await _context.Colors.Where(c => !c.IsDeleted).ToListAsync();
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Category category, bool? status, int page = 1)
+        public async Task<IActionResult> Create(Color color, bool? status, int page = 1)
         {
-            ViewBag.MainCategory = await _context.Categories.Where(c => !c.IsDeleted).ToListAsync();
+            ViewBag.Colors = await _context.Colors.Where(c => !c.IsDeleted).ToListAsync();
 
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(category.Name))
+            if (string.IsNullOrWhiteSpace(color.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
                 return View();
             }
 
-            if (category.Name.CheckString())
+            if (color.Name.CheckString())
             {
                 ModelState.AddModelError("Name", "Should only be Letters");
                 return View();
             }
 
-            if (await _context.Categories.AnyAsync(c => c.Name.ToLower() == category.Name.ToLower()))
+            if (await _context.Colors.AnyAsync(c => c.Name.ToLower() == color.Name.ToLower()))
             {
                 ModelState.AddModelError("Name", "Alreade Exists");
                 return View();
             }
 
-            category.CreatedAt = DateTime.UtcNow.AddHours(4);
+            color.CreatedAt = DateTime.UtcNow.AddHours(4);
 
-            await _context.Categories.AddAsync(category);
+            await _context.Colors.AddAsync(color);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", new { status = status, page = page });
@@ -88,52 +87,52 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
         {
             if (id == null) return BadRequest();
 
-            Category category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            Color color = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (category == null) return NotFound();
+            if (color == null) return NotFound();
 
-            ViewBag.MainCategory = await _context.Categories.Where(c => c.Id != id && !c.IsDeleted).ToListAsync();
+            ViewBag.Colors = await _context.Colors.Where(c => c.Id != id && !c.IsDeleted).ToListAsync();
 
-            return View(category);
+            return View(color);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Category category, bool? status, int page = 1)
+        public async Task<IActionResult> Update(int? id, Color color, bool? status, int page = 1)
         {
-            ViewBag.MainCategory = await _context.Categories.Where(c => c.Id != id && !c.IsDeleted).ToListAsync();
+            ViewBag.Colors = await _context.Colors.Where(c => c.Id != id && !c.IsDeleted).ToListAsync();
 
-            Category dbCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            Color dbColor = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (dbCategory == null) return NotFound();
+            if (dbColor == null) return NotFound();
 
             if (!ModelState.IsValid)
             {
-                return View(dbCategory);
+                return View(dbColor);
             }
 
-            if (id != category.Id) return BadRequest();
+            if (id != color.Id) return BadRequest();
 
-            if (string.IsNullOrWhiteSpace(category.Name))
+            if (string.IsNullOrWhiteSpace(color.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
-                return View(dbCategory);
+                return View(dbColor);
             }
 
-            if (category.Name.CheckString())
+            if (color.Name.CheckString())
             {
                 ModelState.AddModelError("Name", "Should only be Letters");
-                return View(dbCategory);
+                return View(dbColor);
             }
 
-            if (await _context.Categories.AnyAsync(c => c.Id != id && c.Name.ToLower() == category.Name.ToLower()))
+            if (await _context.Colors.AnyAsync(c => c.Id != id && c.Name.ToLower() == color.Name.ToLower()))
             {
                 ModelState.AddModelError("Name", "Alreade Exists");
-                return View(dbCategory);
+                return View(dbColor);
             }
 
-            dbCategory.Name = category.Name;
-            dbCategory.UpdatedAt = DateTime.UtcNow.AddHours(4);
+            dbColor.Name = color.Name;
+            dbColor.UpdatedAt = DateTime.UtcNow.AddHours(4);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", new { status = status, page = page });
@@ -142,12 +141,12 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
         {
             if (id == null) return BadRequest();
 
-            Category dbCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            Color dbColor = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (dbCategory == null) return NotFound();
+            if (dbColor == null) return NotFound();
 
-            dbCategory.IsDeleted = true;
-            dbCategory.DeletedAt = DateTime.UtcNow.AddHours(4);
+            dbColor.IsDeleted = true;
+            dbColor.DeletedAt = DateTime.UtcNow.AddHours(4);
 
             await _context.SaveChangesAsync();
 
@@ -159,11 +158,11 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
         {
             if (id == null) return BadRequest();
 
-            Category dbCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            Color dbColor = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (dbCategory == null) return NotFound();
+            if (dbColor == null) return NotFound();
 
-            dbCategory.IsDeleted = false;
+            dbColor.IsDeleted = false;
 
             await _context.SaveChangesAsync();
 
