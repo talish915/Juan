@@ -11,6 +11,6 @@ namespace Juan_Back_End_Final.Models
         [StringLength(255), Required]
         public string Name { get; set; }
 
-        public IEnumerable<ProductSize> ProductSizes { get; set; }
+        public IEnumerable<ProductColorSize> ProductColorSizes { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
@@ -15,13 +16,11 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
     public class CategoryController : Controller
     {
         private readonly JuanDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
 
-        public CategoryController(JuanDbContext context, IWebHostEnvironment env)
+        public CategoryController(JuanDbContext context)
         {
             _context = context;
-            _env = env;
         }
 
         public async Task<IActionResult> Index(bool? status, int page = 1)
@@ -58,15 +57,10 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(category.Name))
+            Regex regex = new Regex(@"\s{2,}");
+            if (regex.IsMatch(category.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
-                return View();
-            }
-
-            if (category.Name.CheckString())
-            {
-                ModelState.AddModelError("Name", "Should only be Letters");
                 return View();
             }
 
@@ -114,16 +108,11 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             if (id != category.Id) return BadRequest();
 
-            if (string.IsNullOrWhiteSpace(category.Name))
+            Regex regex = new Regex(@"\s{2,}");
+            if (regex.IsMatch(category.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
-                return View(dbCategory);
-            }
-
-            if (category.Name.CheckString())
-            {
-                ModelState.AddModelError("Name", "Should only be Letters");
-                return View(dbCategory);
+                return View();
             }
 
             if (await _context.Categories.AnyAsync(c => c.Id != id && c.Name.ToLower() == category.Name.ToLower()))
@@ -138,7 +127,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             return RedirectToAction("Index", new { status = status, page = page });
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -151,10 +140,19 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok();
+            IEnumerable<Category> categories = await _context.Categories
+                .Include(c => c.Products)
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)categories.Count() / 5);
+
+            return PartialView("_CategoryIndexPartial", categories.Skip((page - 1) * 5).Take(5));
         }
 
-        public async Task<IActionResult> Restore(int? id)
+        public async Task<IActionResult> Restore(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -166,7 +164,16 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            IEnumerable<Category> categories = await _context.Categories
+                .Include(c => c.Products)
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)categories.Count() / 5);
+
+            return PartialView("_CategoryIndexPartial", categories.Skip((page - 1) * 5).Take(5));
         }
     }
 }

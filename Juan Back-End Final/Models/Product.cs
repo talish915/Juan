@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,8 +26,18 @@ namespace Juan_Back_End_Final.Models
         public Category Category { get; set; }
 
         public IEnumerable<Review> Reviews { get; set; }
-        public IEnumerable<ProductImage> ProductImages { get; set; }
-        public IEnumerable<ProductSize> ProductSizes { get; set; }
-        public IEnumerable<ProductColor> ProductColors { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+        public IEnumerable<ProductColorSize> ProductColorSizes  { get; set; }
+
+        [NotMapped]
+        public List<int> ColorIds { get; set; } = new List<int>();
+        [NotMapped]
+        public List<int> SizeIds { get; set; } = new List<int>();
+        [NotMapped]
+        public List<int> Counts { get; set; } = new List<int>();
+        [NotMapped]
+        public IFormFile[] ProductImagesFile { get; set; }
+        [NotMapped]
+        public IFormFile MainImageFile { get; set; }
     }
 }

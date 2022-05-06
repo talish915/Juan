@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
@@ -15,13 +16,11 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
     public class ColorController : Controller
     {
         private readonly JuanDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
 
-        public ColorController(JuanDbContext context, IWebHostEnvironment env)
+        public ColorController(JuanDbContext context)
         {
             _context = context;
-            _env = env;
         }
 
         public async Task<IActionResult> Index(bool? status, int page = 1)
@@ -29,7 +28,6 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             ViewBag.Status = status;
 
             IEnumerable<Color> colors = await _context.Colors
-                .Include(c => c.ProductColors)
                 .Where(c => status != null ? c.IsDeleted == status : true)
                 .OrderByDescending(s => s.CreatedAt)
                 .ToListAsync();
@@ -57,15 +55,12 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(color.Name))
+            color.Name = color.Name.Trim();
+
+            Regex regex = new Regex(@"\s{2,}");
+            if (regex.IsMatch(color.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
-                return View();
-            }
-
-            if (color.Name.CheckString())
-            {
-                ModelState.AddModelError("Name", "Should only be Letters");
                 return View();
             }
 
@@ -113,16 +108,13 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             if (id != color.Id) return BadRequest();
 
-            if (string.IsNullOrWhiteSpace(color.Name))
+            color.Name = color.Name.Trim();
+
+            Regex regex = new Regex(@"\s{2,}");
+            if (regex.IsMatch(color.Name))
             {
                 ModelState.AddModelError("Name", "Should not be Space");
-                return View(dbColor);
-            }
-
-            if (color.Name.CheckString())
-            {
-                ModelState.AddModelError("Name", "Should only be Letters");
-                return View(dbColor);
+                return View();
             }
 
             if (await _context.Colors.AnyAsync(c => c.Id != id && c.Name.ToLower() == color.Name.ToLower()))
@@ -137,7 +129,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             return RedirectToAction("Index", new { status = status, page = page });
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -150,11 +142,18 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
+            IEnumerable<Color> color = await _context.Colors
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
 
-            return RedirectToAction("Index");
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)color.Count() / 5);
+
+            return PartialView("_ColorIndexPartial", color.Skip((page - 1) * 5).Take(5));
         }
 
-        public async Task<IActionResult> Restore(int? id)
+        public async Task<IActionResult> Restore(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -166,7 +165,15 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            IEnumerable<Color> colors = await _context.Colors
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)colors.Count() / 5);
+
+            return PartialView("_ColorIndexPartial", colors.Skip((page - 1) * 5).Take(5));
         }
     }
 }

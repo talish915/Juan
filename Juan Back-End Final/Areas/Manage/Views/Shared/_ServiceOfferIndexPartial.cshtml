@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ServiceOffer>
+@{ int count = (ViewBag.PageIndex - 1) * 5; }
+
+
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Setting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ServiceOffer serviceOffer in Model)
+        {
+            count++;
+            <tr>
+                <th scope="row">@count</th>
+                <td>@serviceOffer.Title</td>
+                <td style="color:@(serviceOffer.IsDeleted ? "red":"green")">@(serviceOffer.IsDeleted ? "DeActive":"Active")</td>
+                <td>
+                    <a class="btn btn-primary w-25" asp-action="Detail" asp-route-id="@serviceOffer.Id">Detail</a>
+                    <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@serviceOffer.Id">Update</a>
+                    <a id="@(serviceOffer.IsDeleted ? "restoreCategory":"deleteCategory")" class="btn w-25 @(serviceOffer.IsDeleted ? "btn-primary":"btn-danger")" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.PageIndex" asp-action="@(serviceOffer.IsDeleted ? "Restore":"Delete")" asp-route-id="@serviceOffer.Id">@(serviceOffer.IsDeleted ? "Restore":"Delete")</a>
+                </td>
+            </tr>            
+        }
+    </tbody>
+</table>

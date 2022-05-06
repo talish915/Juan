@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Brand>
+@{ int count = (ViewBag.PageIndex - 1) * 5; }
+
+
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Setting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Brand brand in Model)
+        {
+            count++;
+            <tr>
+                <th scope="row">@count</th>
+                <td style="width:20%"><img style="width:100%" src="~/assets/img/brand/@brand.Image" alt="" /></td>
+                <td style="vertical-align:middle"><a class="text-black-50" href="@brand.Link">@brand.Name</a></td>
+                <td style="color:@(brand.IsDeleted ? "red":"green")">@(brand.IsDeleted ? "DeActive":"Active")</td>
+                <td>
+                    <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@brand.Id">Update</a>
+                    <a id="@(brand.IsDeleted ? "restoreCategory":"deleteCategory")" class="btn w-25 @(brand.IsDeleted ? "btn-primary":"btn-danger")" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.PageIndex" asp-action="@(brand.IsDeleted ? "Restore":"Delete")" asp-route-id="@brand.Id">@(brand.IsDeleted ? "Restore":"Delete")</a>
+                </td>
+            </tr>            
+        }
+    </tbody>
+</table>

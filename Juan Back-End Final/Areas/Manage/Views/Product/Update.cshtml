@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Update Product</h1>
+    </div>
+</div>
+<div class="productupdate">
+    @await Html.PartialAsync("_ProductUpdateImagePartial", Model)
+</div>
+<div class="row">
+    <div class="col">
+        <a class="btn btn-warning" asp-action="Index">Go To List</a>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/manage/js/Custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".addbtn", function (e) {
+                e.preventDefault();
+                fetch($(this).attr("href")).then(response => response.text()).then(data => $(".inputContaineForadd").append(data));
+            })
+        })
+    </script>
+}
+
+

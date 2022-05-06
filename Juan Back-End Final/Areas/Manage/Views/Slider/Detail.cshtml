@@ -1,0 +1,29 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Detail";
+}
+<h1 class="h3 mb-5 text-gray-800">Service Offer Detail</h1>
+<div style="border: 3px solid #E3A51E;align-items:center" class="row py-3">
+    <div class="col-lg-5">
+        <ul class=" mb-5">
+            <li class="text-primary">Subtitle: <span class="text-success">@Model.SupTitle</span></li>
+            <li class="text-primary">Title: <span class="text-success">@Model.Title</span></li>
+            <li class="text-primary">Description: <span class="text-success">@Model.Description</span></li>
+        </ul>
+        <div  class="w-100">
+            <a asp-action="Index" class="btn btn-primary w-25">Go to Back</a>
+            <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@Model.Id">Update</a>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <img style="width:100%; position: relative;" src="~/assets/img/slider/@Model.Image" alt="" />
+        <div style="position:absolute;top: 60px;left:60px;width:40%;color: #fff;">
+            <h4>@Model.SupTitle</h4>
+            <h3>@Model.Title</h3>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>
+
+
+

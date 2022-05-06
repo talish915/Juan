@@ -1,70 +1,52 @@
 ﻿@model IEnumerable<Social>
 @{ int count = (ViewBag.PageIndex - 1) * 5; }
 
-
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row align-items-center">
+    <div class="col-lg-2 h3 mb-4 text-gray-800">
+        <h1>Social</h1>
+    </div>
+    <div class="col-lg-8 h3 mb-4 text-gray-800">
+        <form class="d-flex justify-content-center">
+            <div class="form-group w-25">
+                <select class="form-control" name="status">
+                    @if (ViewBag.Status == null)
+                    {
+                        <option selected>All</option>
+                        <option value="false">Active</option>
+                        <option value="true">DeActive</option>
+                    }
+                    else if (ViewBag.Status == true)
+                    {
+                        <option>All</option>
+                        <option value="false">Active</option>
+                        <option value="true" selected>DeActive</option>
+                    }
+                    else
+                    {
+                        <option>All</option>
+                        <option value="false" selected>Active</option>
+                        <option value="true">DeActive</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group ml-4">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-2 h3 mb-4 text-gray-800">
+        <a asp-controller="Social" asp-action="Create" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.PageIndex" asp-area="Manage" class="btn btn-success">Create</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-12 tagTable">
-        <div class="d-sm-flex justify-content-between mb-4 align-items-center">
-            <h1 class="h3 mb-0 text-gray-800">Social</h1>
-            <form>
-                <div class="row">
-                    <div class="col">
-                        <select class="form-control" name="status">
-                            @if (ViewBag.Status == null)
-                            {
-                                <option selected>All</option>
-                                <option value="false">Active</option>
-                                <option value="true">DeActive</option>
-                            }
-                            else if (ViewBag.Status == true)
-                            {
-                                <option>All</option>
-                                <option value="false">Active</option>
-                                <option value="true" selected>DeActive</option>
-                            }
-                            else
-                            {
-                                <option>All</option>
-                                <option value="false" selected>Active</option>
-                                <option value="true">DeActive</option>
-                            }
-                        </select>
-                    </div>
-                    <div class=" col">
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                    </div>
-                </div>
-            
-            </form>
-            <a class="btn btn-success py-2 px-5" asp-action="Create">Add</a>
-        </div>
-        <table class="table table-striped text-center">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Icon</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Setting</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Social social in Model)
-                {
-                    count++;
-                    <tr>
-                        <th scope="row">@count</th>
-                        <td><i class="@social.Icon"></i></td>
-                        <td><a href="@social.Link">@social.Name</a></td>
-                        <td style="color:@(social.IsDeleted ? "red":"green")">@(social.IsDeleted ? "DeActive":"Active")</td>
-                        <td>
-                            <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@social.Id">Update</a>
-                            <a id="@(social.IsDeleted ? "restoreCategory":"deleteCategory")" class="btn w-25 @(social.IsDeleted ? "btn-primary":"btn-danger")" data-page="@ViewBag.PageIndex" asp-action="@(social.IsDeleted ? "Restore":"Delete")" asp-route-id="@social.Id">@(social.IsDeleted ? "Restore":"Delete")</a>
-                        </td>
-                    </tr>
-                 }
-            </tbody>
-        </table>
+        @await Html.PartialAsync("_SocialIndexPartial", Model)
+    </div>
+    <div>
+        <span class="text-danger">Not: <span class="text-primary">Icons should only be taken from the Unicons website!</span></span>
 
     </div>
     <div class="col-lg-12 d-flex justify-content-center">
@@ -114,6 +96,7 @@
         </nav>
     </div>
 </div>
+
 @section Script{
     <script src="~/manage/js/sweetalert2.all.min.js"></script>
     <script src="~/manage/js/Custom.js" asp-append-version="true"></script>

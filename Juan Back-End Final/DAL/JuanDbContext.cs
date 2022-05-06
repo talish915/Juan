@@ -18,6 +18,9 @@ namespace Juan_Back_End_Final.DAL
         public DbSet<Social> Socials { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<ProductColorSize> ProductColorSizes { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<ServiceOffer> ServiceOffers { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
     }
 }

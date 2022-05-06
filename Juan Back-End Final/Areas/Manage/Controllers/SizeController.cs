@@ -15,13 +15,11 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
     public class SizeController : Controller
     {
         private readonly JuanDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
 
-        public SizeController(JuanDbContext context, IWebHostEnvironment env)
+        public SizeController(JuanDbContext context)
         {
             _context = context;
-            _env = env;
         }
 
         public async Task<IActionResult> Index(bool? status, int page = 1)
@@ -29,7 +27,6 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             ViewBag.Status = status;
 
             IEnumerable<Size> sizes = await _context.Sizes
-                .Include(s => s.ProductSizes)
                 .Where(s => status != null ? s.IsDeleted == status : true)
                 .OrderByDescending(s => s.CreatedAt)
                 .ToListAsync();
@@ -58,16 +55,13 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
                 return View();
             }
 
-            if (string.IsNullOrWhiteSpace(size.Name))
+            for (int i = 0; i < size.Name.Length; i++)
             {
-                ModelState.AddModelError("Name", "Should not be Space");
-                return View();
-            }
-
-            if (size.Name.CheckString())
-            {
-                ModelState.AddModelError("Name", "Should only be Letters");
-                return View();
+                if (size.Name[i] == ' ')
+                {
+                    ModelState.AddModelError("Name", "Should not be Space");
+                    return View();
+                }
             }
 
             if (await _context.Sizes.AnyAsync(s => s.Name.ToLower() == size.Name.ToLower()))
@@ -114,16 +108,15 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             if (id != size.Id) return BadRequest();
 
-            if (string.IsNullOrWhiteSpace(size.Name))
-            {
-                ModelState.AddModelError("Name", "Should not be Space");
-                return View(dbSize);
-            }
+            size.Name = size.Name.Trim();
 
-            if (size.Name.CheckString())
+            for (int i = 0; i < size.Name.Length; i++)
             {
-                ModelState.AddModelError("Name", "Should only be Letters");
-                return View(dbSize);
+                if (size.Name[i] == ' ')
+                {
+                    ModelState.AddModelError("Name", "Should not be Space");
+                    return View();
+                }
             }
 
             if (await _context.Sizes.AnyAsync(s => s.Id != id && s.Name.ToLower() == size.Name.ToLower()))
@@ -138,7 +131,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             return RedirectToAction("Index", new { status = status, page = page });
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -152,10 +145,18 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             await _context.SaveChangesAsync();
 
 
-            return RedirectToAction("Index");
+            IEnumerable<Size> sizes = await _context.Sizes
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)sizes.Count() / 5);
+
+            return PartialView("_SizeIndexPartial", sizes.Skip((page - 1) * 5).Take(5));
         }
 
-        public async Task<IActionResult> Restore(int? id)
+        public async Task<IActionResult> Restore(int? id, bool? status, int page = 1)
         {
             if (id == null) return BadRequest();
 
@@ -167,7 +168,15 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            IEnumerable<Size> sizes = await _context.Sizes
+                .Where(c => status != null ? c.IsDeleted == status : true)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)sizes.Count() / 5);
+
+            return PartialView("_SizeIndexPartial", sizes.Skip((page - 1) * 5).Take(5));
         }
     }
 }

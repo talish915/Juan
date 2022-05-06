@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
@@ -39,6 +40,26 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             Setting dbSetting = await _context.Settings.FirstOrDefaultAsync();
 
             setting.Logo = dbSetting.Logo;
+
+            setting.Address = setting.Address.Trim();
+            setting.Offer = setting.Offer.Trim();
+
+            Regex regex = new Regex(@"\s{2,}");
+            if (regex.IsMatch(setting.Address) && regex.IsMatch(setting.Offer))
+            {
+                ModelState.AddModelError("Name", "Should not be Space");
+                ModelState.AddModelError("Description", "Should not be Space");
+                return View();
+            }
+
+            for (int i = 0; i < setting.Email.Length; i++)
+            {
+                if (setting.Email[i] == ' ')
+                {
+                    ModelState.AddModelError("Link", "Should not be Space");
+                    return View(dbSetting);
+                }
+            }
 
             if (!ModelState.IsValid)
             {

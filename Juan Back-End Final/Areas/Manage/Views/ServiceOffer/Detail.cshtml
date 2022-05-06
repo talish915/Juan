@@ -1,0 +1,26 @@
+﻿@model ServiceOffer
+@{
+    ViewData["Title"] = "Detail";
+}
+<h1 class="h3 mb-5 text-gray-800">Service Offer Detail</h1>
+<div class="card mx-auto" style="width: 50%; border: 3px solid #E3A51E">
+    <div style="background-color:@Model.BgColor;width:75%;padding:18px;" class="service-policy-item d-flex mx-auto my-5">
+        <div class="policy-icon mr-5">
+            <img src="~/assets/img/icon/@Model.Image" alt="policy icon">
+        </div>
+        <div class="policy-content">
+            <h5 class="policy-title text-dark">@Model.Title</h5>
+            <p class="policy-desc m-0 text-black-50">@Model.Description</p>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item text-primary">Logo: <img src="~/assets/img/icon/@Model.Image" alt="policy icon"></li>
+        <li class="list-group-item text-primary">Title: <span class="text-success">@Model.Title</span></li>
+        <li class="list-group-item text-primary">Description: <span class="text-success">@Model.Description</span></li>
+        <li class="list-group-item text-primary">Background Color: <span class="text-success">@Model.BgColor</span></li>
+    </ul>
+    <div class="card-body">
+        <a asp-action="Index" class="btn btn-primary w-25">Go to Back</a>
+        <a class="btn btn-warning w-25" asp-action="Update" asp-route-id="@Model.Id">Update</a>
+    </div>
+</div>
