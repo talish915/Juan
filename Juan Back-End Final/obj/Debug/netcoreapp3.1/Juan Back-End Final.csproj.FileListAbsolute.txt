@@ -336,3 +336,7 @@ C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\R
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Update.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_ColorIndexPartial.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_SizeIndexPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Basket\Index.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductDetailPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketIndexPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketPartial.cshtml.g.cs

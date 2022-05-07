@@ -184,7 +184,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             }
 
             dbBrand.Name = brand.Name;
-            dbBrand.Link = brand.Name;
+            dbBrand.Link = brand.Link;
             dbBrand.UpdatedAt = DateTime.UtcNow.AddHours(4);
             await _context.SaveChangesAsync();
 

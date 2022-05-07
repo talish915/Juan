@@ -19,6 +19,38 @@ namespace Juan_Back_End_Final.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Juan_Back_End_Final.Models.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Baskets");
+                });
+
             modelBuilder.Entity("Juan_Back_End_Final.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -490,6 +522,13 @@ namespace Juan_Back_End_Final.Migrations
                     b.ToTable("Socials");
                 });
 
+            modelBuilder.Entity("Juan_Back_End_Final.Models.Basket", b =>
+                {
+                    b.HasOne("Juan_Back_End_Final.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+                });
+
             modelBuilder.Entity("Juan_Back_End_Final.Models.Product", b =>
                 {
                     b.HasOne("Juan_Back_End_Final.Models.Category", "Category")
@@ -506,7 +545,7 @@ namespace Juan_Back_End_Final.Migrations
                         .HasForeignKey("ColorId");
 
                     b.HasOne("Juan_Back_End_Final.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductColorSizes")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

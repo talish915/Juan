@@ -22,5 +22,6 @@ namespace Juan_Back_End_Final.DAL
         public DbSet<Brand> Brands { get; set; }
         public DbSet<ServiceOffer> ServiceOffers { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
