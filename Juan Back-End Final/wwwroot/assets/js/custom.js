@@ -7,12 +7,12 @@
             console.log(url)
         }).then(data => {
             $(".minicart-inner").html(data);
+            
         })
     })
-    $(document).on("click", "#addbasketbtn", function (e) {
+    $(document).on("click", ".addbasketbtn", function (e) {
         e.preventDefault()
-
-        let url = $("#basketform").attr("action")
+        let url = $(this).attr("href");
         let count = $("#productcount").val();
 
         var e = document.getElementById("colorids");
@@ -29,9 +29,17 @@
             return response.text();
         }).then(data => {
             $(".minicart-inner").html(data)
-
-        }).then
+            UpdateBasketCount()
+        })
     })
+
+    function UpdateBasketCount() {
+        fetch("/basket/GetBasketCount").then(
+            response => response.json()
+        ).then(data => {
+            $('.notification').text(data.count);
+        })
+    }
 
     $(document).on("click", ".productdetail", function (e) {
         e.preventDefault();
@@ -66,15 +74,15 @@
         var count = $(this).parent().find('input').val();
         var id = $(this).parent().find('input').attr("data-id");
 
-            if ($(this).hasClass("dec")) {
+        if ($(this).hasClass("dec")) {
 
-                if (count != 0) {
-                    count--;
-                }
+            if (count != 0) {
+                count--;
             }
-            else {
-                count++;
-            }
+        }
+        else {
+            count++;
+        }
 
         fetch("Basket/Update" + "?id=" + id + "&count=" + count).then(response => {
 
@@ -116,7 +124,7 @@
         $(".minicart-inner").addClass('show')
     })
 
-    $(".offcanvas-close, .minicart-close,.offcanvas-overlay").on('click', function () {
+    $(document).on("click", ".offcanvas-close, .minicart-close,.offcanvas-overlay", function () {
         $("body").removeClass('fix');
         $(".offcanvas-search-inner, .minicart-inner").removeClass('show')
     })

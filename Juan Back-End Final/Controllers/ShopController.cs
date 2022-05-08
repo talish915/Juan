@@ -32,10 +32,7 @@ namespace Juan_Back_End_Final.Controllers
                     products = await _context.Products.OrderByDescending(p => p.Title).ToListAsync();
                     break;
                 default:
-                    products = await _context.Products
-                        .Include(p => p.ProductColorSizes).ThenInclude(p => p.Color)
-                        .Include(p => p.ProductColorSizes).ThenInclude(p => p.Size)
-                        .OrderBy(p => p.Title).ToListAsync();
+                    products = await _context.Products.OrderBy(p => p.Title).ToListAsync();
                     break;
             }
             return View(products);

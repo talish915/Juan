@@ -32,6 +32,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             IEnumerable<Product> products = await _context.Products
                 .Include(p => p.Category)
+                .Include(p=>p.ProductColorSizes)
                 .Where(p => status != null ? p.IsDeleted == status : !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedAt)
                 .ToListAsync();
@@ -199,6 +200,8 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             if (id == null) return BadRequest();
 
             Product product = await _context.Products
+                .Include(p=>p.ProductColorSizes).ThenInclude(p=>p.Size)
+                .Include(p => p.ProductColorSizes).ThenInclude(p => p.Color)
                 .Include(p => p.ProductImages)
                 .FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
 
@@ -221,6 +224,8 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             Product dbProduct = await _context.Products
                 .Include(p => p.ProductImages)
+                .Include(p => p.ProductColorSizes).ThenInclude(p => p.Color)
+                .Include(p => p.ProductColorSizes).ThenInclude(p => p.Size)
                 .FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
 
             if (dbProduct == null) return NotFound();
@@ -229,6 +234,22 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             product.Title = product.Title.Trim();
             product.Description = product.Description.Trim();
+
+
+            List<ProductColorSize> productColorSizes = new List<ProductColorSize>();
+
+            for (int i = 0; i < product.ColorIds.Count; i++)
+            {
+                ProductColorSize productColorSize  = new ProductColorSize
+                {
+                    ColorId = product.ColorIds[i],
+                    SizeId = product.SizeIds[i],
+                    Count = product.Counts[i]
+                };
+
+                productColorSizes.Add(productColorSize);
+            }
+            product.ProductColorSizes = productColorSizes;
 
             Regex regex = new Regex(@"\s{2,}");
             if (regex.IsMatch(product.Title) && regex.IsMatch(product.Description))
@@ -316,6 +337,9 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
         public async Task<IActionResult> DeleteImage(int? id)
         {
             ViewBag.Categories = await _context.Categories.Where(b => !b.IsDeleted).ToListAsync();
+            ViewBag.Colors = await _context.Colors.ToListAsync();
+            ViewBag.Sizes = await _context.Sizes.ToListAsync();
+
 
             if (id == null) return BadRequest();
 

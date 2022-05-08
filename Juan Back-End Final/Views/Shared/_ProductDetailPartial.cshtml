@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <button form="basketform" id="addbasketbtn" type="submit" data-toggle="tooltip" title="Add To Cart" class="btn btn-default col-lg-6 addToBasket">Add To Cart</button>
+                            <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Id" data-toggle="tooltip" title="Add To Cart" class="btn btn-default col-lg-6 addbasketbtn">Add To Cart</a>
                         </div>
                         <div class="availability mb-20">
                             <h5 class="cat-title">Availability:</h5>

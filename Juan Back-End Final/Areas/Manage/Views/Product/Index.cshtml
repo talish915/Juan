@@ -70,7 +70,7 @@
                     <td>@product.Category.Name</td>
                     <td>@product.Price</td>
                     <td>@product.DiscountPrice</td>
-                    <td>@product.Count</td>
+                    <td>@product.ProductColorSizes.Sum(p=>p.Count)</td>
                     <td style="color:@(product.IsDeleted ? "red":"green")">@(product.IsDeleted ? "DeActive":"Active")</td>
                     <td>
                         <a class="btn btn-primary" asp-action="Detail" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.PageIndex" asp-route-id="@product.Id">Detail</a>

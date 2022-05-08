@@ -227,5 +227,24 @@ namespace Juan_Back_End_Final.Controllers
 
             return PartialView("_BasketPartial", basketVMs);
         }
+        public object GetBasketCount()
+        {
+            string cookieBasket = HttpContext.Request.Cookies["basket"];
+
+            List<BasketVM> basketVMs = null;
+
+            if (cookieBasket != null)
+            {
+                basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(cookieBasket);
+            }
+            else
+            {
+                basketVMs = new List<BasketVM>();
+            }
+            return new
+            {
+                count = basketVMs.Count()
+            };
+        }
     }
 }
