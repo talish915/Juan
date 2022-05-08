@@ -1,6 +1,15 @@
 ﻿@model List<BasketVM>
+@{
+    double subTotal = 0;
+    double total = 0;
+    foreach (var item in Model)
+    {
+        total += (item.Price * item.Count);
+    }
+}
+
 <div class="offcanvas-overlay"></div>
-<div class="minicart-inner-content">
+<div class="minicart-inner-content header-cart">
     <div class="minicart-close">
         <i class="ion-android-close"></i>
     </div>
@@ -26,6 +35,7 @@
                         </div>
                         <a asp-controller="Basket" asp-action="DeleteBasket" asp-route-id="@basketVM.ProductId" class="minicart-remove deletebasket"><i class="ion-android-close"></i></a>
                     </li>
+                    subTotal += (basketVM.Price * basketVM.Count);
                 }
             </ul>
         </div>
@@ -34,11 +44,7 @@
             <ul>
                 <li>
                     <span>sub-total</span>
-                    <span><strong>$300.00</strong></span>
-                </li>
-                <li>
-                    <span>Eco Tax (-2.00)</span>
-                    <span><strong>$10.00</strong></span>
+                    <span><strong>$@subTotal</strong></span>
                 </li>
                 <li>
                     <span>VAT (20%)</span>
@@ -46,14 +52,14 @@
                 </li>
                 <li class="total">
                     <span>total</span>
-                    <span><strong>$370.00</strong></span>
+                    <span><strong>$@total</strong></span>
                 </li>
             </ul>
         </div>
 
         <div class="minicart-button">
-            <a asp-controller="basket" asp-action="index"><i class="fa fa-shopping-cart"></i> view cart</a>
-            <a href="~/cart.html"><i class="fa fa-share"></i> checkout</a>
+            <a asp-controller="basket" asp-action="Index"><i class="fa fa-shopping-cart"></i> view cart</a>
+            <a asp-controller="Order" asp-action="Index"><i class="fa fa-share"></i> checkout</a>
         </div>
     </div>
 </div>
