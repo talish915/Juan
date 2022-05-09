@@ -40,17 +40,17 @@
                             }
                         </div>
                         <p>@Model.Description</p>
-                        <div class="quantity-cart-box d-flex align-items-center mb-20">
-                            <form id="basketform" method="post" asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Id" class="row" enctype="multipart/form-data">
+                        <div class="quantity-cart-box mb-20">
+                            <form id="basketform" method="post" asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Id" class="row mb-5" enctype="multipart/form-data">
 
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-4">
                                     <label>Select Color</label>
                                     <select name="ColorIds[]" id="colorids" class="form-control" asp-items="@new SelectList(ViewBag.Colors, nameof(Color.Id), nameof(Color.Name))">
                                     </select>
                                     <span class="text-danger" asp-validation-for="ColorIds"></span>
                                 </div>
 
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-4">
                                     <label>Size</label>
                                     <select name="SizeIds[]" id="sizeids" class="form-control" asp-items="@new SelectList(ViewBag.Sizes, nameof(Size.Id), nameof(Size.Name))">
                                     </select>
@@ -58,9 +58,12 @@
                                 </div>
                                 <br />
 
-                                <div class="quantity col-lg-6">
+                                <div class="quantity col-lg-4 mr-0">
+                                    <label>Count</label>
                                     <div class="pro-qty">
+                                        <span class="dec qtybtn">-</span>
                                         <input id="productcount" type="text" value="1">
+                                        <span class="inc qtybtn">+</span>
                                     </div>
                                 </div>
                             </form>

@@ -35,13 +35,20 @@ using Juan_Back_End_Final.ViewModels.Basket;
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Views\_ViewImports.cshtml"
+using Juan_Back_End_Final.ViewModels.Account;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Views\_ViewImports.cshtml"
 using Juan_Back_End_Final.Services;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca9007e2d2d8476fe1e4a0eddde038637c25bf00", @"/Views/Shared/_BasketPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8b625ca033c8e0a24f36440bfb95183bc34cc1e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b5c25bb8bd7f57d987b8bac5de609f5f9d41e937", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__BasketPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<BasketVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString("product"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -111,9 +118,9 @@ using Juan_Back_End_Final.Services;
 #line hidden
 #nullable disable
             WriteLiteral("                    <li class=\"minicart-item\">\r\n                        <div class=\"minicart-thumb\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf007481", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf007689", async() => {
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ca9007e2d2d8476fe1e4a0eddde038637c25bf007768", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ca9007e2d2d8476fe1e4a0eddde038637c25bf007976", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -150,7 +157,7 @@ AddHtmlAttributeValue("", 765, basketVM.Image, 765, 15, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </div>\r\n                        <div class=\"minicart-content\">\r\n                            <h3 class=\"product-name\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0010453", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0010661", async() => {
 #nullable restore
 #line 29 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Views\Shared\_BasketPartial.cshtml"
                                                             Write(basketVM.Title);
@@ -187,7 +194,7 @@ AddHtmlAttributeValue("", 765, basketVM.Image, 765, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("</span>\r\n                            </p>\r\n                        </div>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0012638", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0012846", async() => {
                 WriteLiteral("<i class=\"ion-android-close\"></i>");
             }
             );
@@ -254,7 +261,7 @@ AddHtmlAttributeValue("", 765, basketVM.Image, 765, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("</strong></span>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"minicart-button\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0016643", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0016851", async() => {
                 WriteLiteral("<i class=\"fa fa-shopping-cart\"></i> view cart");
             }
             );
@@ -272,7 +279,7 @@ AddHtmlAttributeValue("", 765, basketVM.Image, 765, 15, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0018058", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca9007e2d2d8476fe1e4a0eddde038637c25bf0018266", async() => {
                 WriteLiteral("<i class=\"fa fa-share\"></i> checkout");
             }
             );

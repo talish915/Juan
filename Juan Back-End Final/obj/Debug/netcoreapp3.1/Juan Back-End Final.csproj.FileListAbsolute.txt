@@ -340,3 +340,17 @@ C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\R
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductDetailPartial.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketIndexPartial.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Delete.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Account\Profile.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProfileFormPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RegisterPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationFormScriptPartial.cshtml.g.cs

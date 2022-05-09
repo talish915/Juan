@@ -314,6 +314,7 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
                         Image = file.CreateFile(_env, "assets", "img", "product"),
                         CreatedAt = DateTime.UtcNow.AddHours(4)
                     };
+                    Helper.DeleteFile(_env, dbProduct.Image, "assets", "img", "product");
 
                     dbProduct.ProductImages.Add(productImage);
                 }
@@ -363,7 +364,8 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
 
             Product product = await _context.Products
                 .Include(p => p.ProductImages)
-                .Include(p => p.Category)
+                .Include(p => p.ProductColorSizes).ThenInclude(p => p.Color)
+                .Include(p => p.ProductColorSizes).ThenInclude(p => p.Size)
                 .FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
 
             if (product == null) return NotFound();

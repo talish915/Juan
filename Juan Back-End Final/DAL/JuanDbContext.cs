@@ -1,4 +1,5 @@
 ﻿using Juan_Back_End_Final.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Juan_Back_End_Final.DAL
 {
-    public class JuanDbContext : DbContext
+    public class JuanDbContext : IdentityDbContext<AppUser>
     {
         public JuanDbContext(DbContextOptions<JuanDbContext> options): base(options) { }
         public DbSet<Setting> Settings { get; set; }
@@ -23,5 +24,8 @@ namespace Juan_Back_End_Final.DAL
         public DbSet<ServiceOffer> ServiceOffers { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

@@ -73,13 +73,13 @@
                         {
                             <div class="product-item mb-50">
                                 <div class="product-thumb">
-                                    <a href="product-details.html">
+                                    <a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
                                         <img src="~/assets/img/product/@product.Image" alt="">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <h5 class="product-name">
-                                        <a href="product-details.html">@product.Title</a>
+                                        <a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Title</a>
                                     </h5>
                                     <div class="price-box">
                                         @if (product.DiscountPrice > 0)
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="product-action-link">
                                         <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
+                                        <a class="addbasketbtn" asp-controller="Home" asp-action="AddToBasket" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
                                         <a class="productdetail" data-toggle="modal" data-target="#quick_view" asp-controller="Home" asp-action="DetailModal" asp-route-id="@product.Id">
                                             <span data-toggle="tooltip"
                                                   title="Quick View"><i class="ion-ios-eye-outline"></i></span>

@@ -7,9 +7,10 @@
             console.log(url)
         }).then(data => {
             $(".minicart-inner").html(data);
-            
+            UpdateBasketCount()
         })
     })
+
     $(document).on("click", ".addbasketbtn", function (e) {
         e.preventDefault()
         let url = $(this).attr("href");
@@ -105,7 +106,10 @@
             fetch("Basket/GetBasket").then(response => response.text()).then(data => $(".header-cart").html(data))
 
             return response.text()
-        }).then(data => $(".basketContainer").html(data))
+        }).then(data => {
+            $(".basketContainer").html(data)
+            UpdateBasketCount()
+        })
     })
 
     $(document).on("click", ".deletebasket", function (e) {
@@ -117,7 +121,11 @@
             fetch("Basket/GetCard").then(response => response.text()).then(data => $(".basketContainer").html(data))
 
             return response.text()
-        }).then(data => $(".minicart-inner").html(data))
+        }).then(data => {
+            $(".minicart-inner").html(data)
+            UpdateBasketCount()
+        })
+        
     })
     $(".minicart-btn").on('click', function () {
         $("body").addClass('fix');
@@ -128,4 +136,19 @@
         $("body").removeClass('fix');
         $(".offcanvas-search-inner, .minicart-inner").removeClass('show')
     })
+
+    $('.pro-nav').slick({
+        slidesToShow: 4,
+        asNavFor: '.product-large-slider',
+        arrows: false,
+        focusOnSelect: true
+    });
+
+    $('.product-large-slider').slick({
+        fade: true,
+        arrows: false,
+        asNavFor: '.pro-nav'
+    });
+
+    $('.img-zoom').zoom();
 })
