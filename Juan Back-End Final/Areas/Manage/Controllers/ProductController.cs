@@ -2,6 +2,7 @@
 using Juan_Back_End_Final.Extensions;
 using Juan_Back_End_Final.Helpers;
 using Juan_Back_End_Final.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class ProductController : Controller
     {
         private readonly JuanDbContext _context;

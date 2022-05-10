@@ -1,8 +1,15 @@
 ﻿@inject LayoutService LayoutService
-@{ 
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
+@{
     List<BasketVM> basketVMs = await LayoutService.GetBasket();
     Setting setting = await LayoutService.GetSetting();
     Social social = await LayoutService.GetSocial();
+    AppUser appUser = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        appUser = userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+    }
     int count = basketVMs.Count;
 }
 <!DOCTYPE html>
@@ -124,9 +131,19 @@
                                                 <i class="ion-ios-gear-outline"></i>
                                             </a>
                                             <ul class="dropdown-list">
-                                                <li><a asp-controller="Account" asp-action="Login">login</a></li>
-                                                <li><a asp-controller="Account" asp-action="Register">register</a></li>
-                                                <li><a href="my-account.html">my account</a></li>
+                                                @if (appUser != null)
+                                                {
+
+                                                    <li><a asp-action="profile" asp-controller="Account">@appUser.UserName</a></li>
+                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a asp-action="Logout" asp-controller="Account">Sign Out</a></li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li><a asp-controller="Account" asp-action="Login">login</a></li>
+                                                    <li><a asp-controller="Account" asp-action="Register">register</a></li>
+                                                }
                                             </ul>
                                         </li>
                                         <li>
@@ -296,7 +313,7 @@
     <!-- offcanvas mini cart start -->
     <div class="offcanvas-minicart-wrapper">
         <div class="minicart-inner">
-            @await Html.PartialAsync("_BasketPartial",basketVMs)
+            @await Html.PartialAsync("_BasketPartial", basketVMs)
         </div>
     </div>
     <!-- offcanvas mini cart end -->

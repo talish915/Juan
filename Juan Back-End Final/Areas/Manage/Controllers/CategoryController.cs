@@ -1,6 +1,7 @@
 ﻿using Juan_Back_End_Final.DAL;
 using Juan_Back_End_Final.Extensions;
 using Juan_Back_End_Final.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace Juan_Back_End_Final.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class CategoryController : Controller
     {
         private readonly JuanDbContext _context;
@@ -56,6 +58,8 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             {
                 return View();
             }
+
+            category.Name = category.Name.Trim();
 
             Regex regex = new Regex(@"\s{2,}");
             if (regex.IsMatch(category.Name))
@@ -107,6 +111,8 @@ namespace Juan_Back_End_Final.Areas.Manage.Controllers
             }
 
             if (id != category.Id) return BadRequest();
+
+            category.Name = category.Name.Trim();
 
             Regex regex = new Regex(@"\s{2,}");
             if (regex.IsMatch(category.Name))

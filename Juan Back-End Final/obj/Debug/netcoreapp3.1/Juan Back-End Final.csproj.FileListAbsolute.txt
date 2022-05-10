@@ -354,3 +354,6 @@ C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\R
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProfileFormPartial.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RegisterPartial.cshtml.g.cs
 C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationFormScriptPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrderPartial.cshtml.g.cs
+C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Login.cshtml.g.cs

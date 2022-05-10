@@ -19,8 +19,22 @@ using Juan_Back_End_Final.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Areas\Manage\Views\_ViewImports.cshtml"
+using Juan_Back_End_Final.ViewModels.Account;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Areas\Manage\Views\_ViewImports.cshtml"
+using Juan_Back_End_Final.Enums;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b57368a368a1d54dd89bbdde49e2e56d11dcbf9a", @"/Areas/Manage/Views/Shared/_ServiceOfferIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"22ac223d4789fa05c23bea1e80b99fecdd7b787e", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"afda6d3a377775f6ddd5aee37384be9bc9eb1041", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__ServiceOfferIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ServiceOffer>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-primary w-25"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -116,7 +130,7 @@ WriteAttributeValue("", 572, serviceOffer.IsDeleted ? "red":"green", 572, 41, fa
 #line hidden
 #nullable disable
             WriteLiteral("</td>\n                <td>\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a6794", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a7223", async() => {
                 WriteLiteral("Detail");
             }
             );
@@ -148,7 +162,7 @@ WriteAttributeValue("", 572, serviceOffer.IsDeleted ? "red":"green", 572, 41, fa
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a9121", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a9550", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -180,7 +194,7 @@ WriteAttributeValue("", 572, serviceOffer.IsDeleted ? "red":"green", 572, 41, fa
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a11448", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b57368a368a1d54dd89bbdde49e2e56d11dcbf9a11877", async() => {
 #nullable restore
 #line 25 "C:\Users\LENOVO\Desktop\Juan Final\Juan Back-End Final\Areas\Manage\Views\Shared\_ServiceOfferIndexPartial.cshtml"
                                                                                                                                                                                                                                                                                                                                   Write(serviceOffer.IsDeleted ? "Restore":"Delete");

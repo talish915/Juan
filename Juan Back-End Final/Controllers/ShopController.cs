@@ -17,7 +17,7 @@ namespace Juan_Back_End_Final.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(string sortby)
+        public async Task<IActionResult> Index(string sortby, int page = 1)
         {
             List<Product> products = new List<Product>();
             ViewBag.Categories = await _context.Categories.ToListAsync();
@@ -35,7 +35,11 @@ namespace Juan_Back_End_Final.Controllers
                     products = await _context.Products.OrderBy(p => p.Title).ToListAsync();
                     break;
             }
-            return View(products);
+
+            ViewBag.PageIndex = page;
+            ViewBag.PageCount = Math.Ceiling((double)products.Count() / 9);
+
+            return View(products.Skip((page - 1) * 9).Take(9));
         }
     }
 }

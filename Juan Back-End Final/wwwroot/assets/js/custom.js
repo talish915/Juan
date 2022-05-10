@@ -127,6 +127,7 @@
         })
         
     })
+
     $(".minicart-btn").on('click', function () {
         $("body").addClass('fix');
         $(".minicart-inner").addClass('show')
